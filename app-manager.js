@@ -29,15 +29,6 @@ app.configure(function () {
 
 });
 
-var args =  process.argv.slice(2);
-
-if (args.length < 1) {
-	console.log("Usage: " + process.argv[0] + " " + process.argv[1] + " <port>");
-	process.exit(1);
-}
-
-var port = args[0];
-
 app.options("/*", function (req, res) {
 
 	res.set({
@@ -69,7 +60,7 @@ am.init( function(errors) {
 	}
 	
 	console.log("APP MANAGER INITIALIZATION AT " + new Date());
-	httpServer.listen(port);
+	httpServer.listen(process.env.PORT || 5000);
 	am.startHeartbeat();
 	dd.startHeartbeat();
 });
