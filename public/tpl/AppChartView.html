@@ -1,0 +1,82 @@
+<div class="widget">
+	<div class="widget-header clearfix">
+		<span class="pull-left"><i class="icon-chart">Activity Monitor</i></span>
+	</div>
+	<div class="widget bg-color dark-grey rounded">
+		<div class="box-padding">
+			<div id="flot-line" class="graph-area charts"></div>
+		</div>
+	</div>
+	<div class="graphul" style="background-color:#FF0000">
+		<ul>
+			<li><img class="indicatorBlue"/><span>Active Recordings</span></li>
+			<li><img class="indicatorGreen"/><span>Archived Recordings</span></li>
+			<li><img class="indicatorRed"/><span>Active Playbacks</span></li>
+		</ul>
+		<div class="addFormButtons" style="float:right">
+			<a href="#listInstances" class="btn btn-turqoise">OK</a>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready( function() {
+
+	var activeRecordings = window.chartData.activeRecordings;
+	var activePlaybacks = window.chartData.activePlaybacks;
+	var archivedRecordings = window.chartData.archivedRecordings;
+	
+	console.log('AppChartView activeRecordings = ' + activeRecordings);
+	console.log('AppChartView activePlaybacks = ' + activePlaybacks);
+	console.log('AppChartView archivedRecordings = ' + archivedRecordings);
+	var colors = [ "#00AAFF", "#ef754a", "#2abf9e" ];
+	var stack = 1;
+	var	bars = false;
+	var lines = true;
+	var steps = false;
+
+	if ( $("#flot-line").length > 0 ) {
+		$.plot (
+			$("#flot-line"),
+			[activeRecordings, activePlaybacks, archivedRecordings],
+			{
+				xaxis: {
+					font: {
+					    color: "#ccc",
+					    size: 12,
+					}
+				},
+				yaxis: {
+					font: {
+					    color: "#ccc",
+					    size: 12,
+					}
+				},
+			    series: {
+					lines: { 
+						show: true,
+						lineWidth: 5,
+						fill: .6,
+					},
+					points: { 
+						show: true,
+						radius: 0,
+					},
+				},
+				grid: {
+					show:true,
+					clickable: true,
+				    hoverable: true,
+				    autoHighlight: true,
+				    mouseActiveRadius: 10,
+				    aboveData: true,
+				    backgroundColor: "#333",
+				    borderWidth: 0,
+				    minBorderMargin: 25,
+				},
+				colors: colors,
+			    shadowSize: 0,
+			}
+		);
+	}
+});
+</script>

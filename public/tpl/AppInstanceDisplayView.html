@@ -1,0 +1,184 @@
+<div class="container">
+            <div class="widget span8">
+            <div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-plus-circle-1"></i> EDIT APPLICATION</span>
+        	</div>
+                <div id="instanceForm" class="row-fluid">
+                     <form class="form-horizontal span12">
+                        <fieldset>
+                            <div class="addApplicationItemHeader"><span><%= type.toUpperCase()  %></span></div>
+                            <div class="addApplicationItemIconSection">
+        						<span><%= type.toUpperCase() %></span>
+            					<div class ="addApplicationIcon">
+									<img src='../img/playerIcon.png' alt=""/>
+								</div>
+        					</div>
+                                
+                          <div class="addApplicationNameSection"><span><%= name %></span></div>
+                                
+                          <div class="addApplicationFormSection">
+
+                            <div class="row">
+
+                               
+                                <div class="span8">
+
+                                    <div class="control-group">
+                                        <label for="instanceId" class="addFormLabel">Id:</label>
+
+                                        <div class="controls">
+                                            <label name="id" class="addFormLabel"> <%= _id %> </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label for="minWorker" class="addFormLabel">Min Workers:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="minWorker" name="minWorkers"
+                                                   value="<%= minWorkers %>"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="control-group">
+                                        <label for="maxWorker" class="addFormLabel">Max Workers:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="maxWorkers" name="maxWorkers"
+                                                   value="<%= maxWorkers %>"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                </div>
+                                
+                            <div class="addApplicationStatus">  
+                            	<div class="gridItemul">
+        							<ul>
+        								<li> <img id="launch<%= _id %>" class="indicatorClear"/> <span>Launching</span></li>
+            							<li><img id="config<%= _id %>" class="indicatorClear"/><span>Configuring</span></li>
+            							<li><img id="init<%= _id %>" class="indicatorClear"/><span>Initializing</span></li>
+        							</ul>
+        						</div>
+                            </div>
+
+                           
+                            </div>
+
+                            </div>
+
+                        </fieldset>
+
+                        <div class="addFormButtons">
+                            <a href="#" class="btn btn-turqoise save">OK</a>
+                        </div>
+
+                    </form>
+	
+
+                </div>
+                
+            </div>
+
+            <div class="row-fluid status-bar">
+                <div class="span12">
+                    <div class="alert alert-success" style="display: none">
+                        <b>Success!</b> App saved successfully
+                    </div>
+                </div>
+            </div>
+
+
+</div>
+
+
+<script>
+
+$(document).ready(function () {
+	
+	// window.appManagerEvents = new AppManagerBroadcast();
+	//  
+	// appManagerEvents.on("< % =  _id  % > ", function(data) {
+	// 	update(data._id, data.runstatus);
+	// });
+	
+	setupStatusIndicators("<%= _id %>" ,"<%= runstatus %>");
+		
+	function update(id, runstatus) {
+		setupStatusIndicators(id ,runstatus);
+	}
+			
+			
+	function setupStatusIndicators (id, runstatus) {
+		
+		var clearNotification = "indicatorClear";
+		var greenNotification = "indicatorGreen";
+		var yellowNotification = "indicatorYellow";
+		var redNotification = "indicatorRed";
+		
+		
+		var statusint = parseInt(runstatus, 16);
+		
+		var launchID = "launch" +id;
+		var configID = "config" +id;
+		var initID = "init" +id;
+		var headerID = "gridItemHeader" +id;
+		
+		<!-- First check if elements exist -->
+		<!-- Because this is in the .js file it will still try to change the element. -->
+		<!-- even if the element no logner exists.-->
+		if( $('#'+launchID).length > 0 && $('#'+configID).length > 0 && $('#'+initID).length > 0 ){
+		
+			switch(statusint)
+				{
+				case 1:
+					document.getElementById(launchID).className = yellowNotification;
+					document.getElementById(configID).className = clearNotification;
+					document.getElementById(initID).className = clearNotification;
+  				break;
+				case 2:
+					document.getElementById(launchID).className = redNotification;
+					document.getElementById(configID).className = clearNotification;
+					document.getElementById(initID).className = clearNotification;
+  				break;
+				case 3:
+					document.getElementById(launchID).className = greenNotification;
+					document.getElementById(configID).className = yellowNotification;
+					document.getElementById(initID).className = clearNotification;
+  				break;
+				case 4:
+					document.getElementById(launchID).className = greenNotification;
+					document.getElementById(configID).className = redNotification;
+					document.getElementById(initID).className = clearNotification;
+  				break;
+				case 5:
+					document.getElementById(launchID).className = greenNotification;
+					document.getElementById(configID).className = greenNotification;
+					document.getElementById(initID).className = yellowNotification;
+  				break;
+				case 6:
+					document.getElementById(launchID).className = greenNotification;
+					document.getElementById(configID).className = greenNotification;
+					document.getElementById(initID).className = redNotification;
+  				break;
+				case 7:
+					document.getElementById(launchID).className = greenNotification;
+					document.getElementById(configID).className = greenNotification;
+					document.getElementById(initID).className = greenNotification;;
+  				break;
+				default:
+					document.getElementById(launchID).className = clearNotification;
+					document.getElementById(configID).className = clearNotification;
+					document.getElementById(initID).className = clearNotification;
+  				break;
+			}
+		}
+	}
+	
+ });
+ 
+ 
+
+</script>

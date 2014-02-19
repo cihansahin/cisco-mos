@@ -1,0 +1,94 @@
+/*= BOOTSTRAP: BUTTONS
+---------------------------------------------------------------------------------------------- */
+
+.btn-box {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn-box:hover {
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.btn-box:focus {
+  outline: none;
+}
+
+.btn-box [class^="icon-"],
+
+.btn-box [class*=" icon-"] {
+  min-width: 16px;
+  text-align: center;
+  display: inline-block !important;
+}
+
+.btn-box {
+  background: #f8f8f8;
+  background: -moz-linear-gradient(-45deg, #fefefe 0%, #fefefe 50%, #f9f9f9 50.1%, #f9f9f9 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #fefefe), color-stop(50%, #fefefe), color-stop(50.1%, #f9f9f9), color-stop(100%, #f9f9f9));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(-45deg, #fefefe 0%, #fefefe 50%, #f9f9f9 50.1%, #f9f9f9 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(-45deg, #fefefe 0%, #fefefe 50%, #f9f9f9 50.1%, #f9f9f9 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(-45deg, #fefefe 0%, #fefefe 50%, #f9f9f9 50.1%, #f9f9f9 100%);
+  /* IE10+ */
+
+  background: linear-gradient(135deg, #fefefe 0%, #fefefe 50%, #f9f9f9 50.1%, #f9f9f9 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@startColor', endColorstr='@endColor', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+
+  border: 1px solid #ccc;
+  border-bottom-color: #aaa;
+  text-align: center;
+  text-decoration: none !important;
+  padding: 25px 0;
+  margin: 0 0 30px;
+}
+.btn-box i,
+.btn-box b {
+  display: block;
+}
+.btn-box b {
+  color: #444;
+  font-size: 14px;
+  margin-top: 5px;
+  text-shadow: 0 1px 0 #fff;
+}
+.btn-box i {
+  font-size: 36px;
+  line-height: 36px;
+  height: 36px;
+  color: rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 1px #eeeeee, 0 0 0 #000000, 0 0 1px #ffffff;
+}
+.btn-box.big b {
+  margin-top: 10px;
+}
+.btn-box.big i {
+  font-size: 48px;
+  line-height: 48px;
+  height: 48px;
+}
+.btn-box.small b {
+  font-size: 11px;
+}
+.btn-box.small i {
+  font-size: 24px;
+  line-height: 24px;
+  height: 24px;
+}
+.btn-box:hover i {
+  color: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 1px #cccccc, 0 0 0 #000000, 0 0 1px #ffffff;
+}

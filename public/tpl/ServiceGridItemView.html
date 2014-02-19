@@ -1,0 +1,30 @@
+<div class ="item appGridItemView">
+
+	<div class="gridItemViewContainer">
+		<div id="gridItemHeader<%= _id %>" class="itemHeader" style="background-color:<%= color %>; height:40px;">
+			<span class="gridItemTitle"><%= name %></span>
+		</div>
+        
+        <div class="gridItemul">
+        	<ul>
+        		<li><img id="launch<%= _id %>" class="<%= launch %>"/> <span>Launching</span></li>
+            	<li><img id="config<%= _id %>" class="<%= config %>"/><span>Configuring</span></li>
+            	<li><img id="init<%= _id %>" class="<%= init %>"/><span>Initializing</span></li>
+        	</ul>
+        
+        
+        </div>
+        
+
+        <div class="gridItemId">
+        	<span>ID: <%= _id %> </span>
+            <!-- Todo: Set image -->
+            <img src="../pics/<%= icon %>" width="40" height="40"/>
+		</div>
+
+		</div>
+		
+			
+	</div> 
+
+</div>

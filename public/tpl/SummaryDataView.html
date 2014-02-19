@@ -1,0 +1,172 @@
+
+<section id="summaryView" class="statusView">
+	<div id="instanceView" class="fullClear">
+			<div class="widget widget-summary">
+						
+                        <!-- HEADER -->
+                        <div class="widget-header clearfix">
+							<span class="pull-left"><i class="icon-doc-inv-alt"></i> Summary</span>				
+                            <div class="dropdown pull-right">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog-2"></i> <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+				                    <li><a href="index.html">Drop Down Item</a></li>
+									
+				                </ul>
+							</div>
+						</div>
+                        
+                        
+                        <div class="summaryDualBox">
+                       		<div id="recordings" class="bg-color dark-grey summaryTriBox" >
+								<div class="box-padding aligncenter">
+									<h5 class="no-margin normal">Recordings</h5>
+									<h3 class="no-margin normal summaryH3Data"><%= mosFormat(total, 'activeRecordings') %></h3>
+								</div>
+							</div>
+						
+	                      		<div id="recordings" class="bg-color dark-grey summaryTriBox" >
+								<div class="box-padding aligncenter">
+									<h5 class="no-margin normal">Playback</h5>
+									<h3 class="no-margin normal summaryH3Data"><%= mosFormat(total, 'activePlaybacks') %></h3>
+								</div>
+							</div>
+                            
+                            <div id="archive" class="bg-color dark-grey summaryTriBox" >
+								<div class="box-padding aligncenter">
+									<h5 class="no-margin normal">Archive</h5>
+									<h3 class="no-margin normal summaryH3Data"><%= mosFormat(total, 'archivedRecordings') %></h3>
+								</div>
+							</div>
+                        </div>
+                        
+                        <div class="summaryDualBox">
+                       		<div id="usage" class="bg-color turqoise usageTwinBox" >
+								<div class="box-padding aligncenter">
+									<h5 class="no-margin normal">Used</h5>
+									<h3 class="no-margin normal summaryH3Data"><%= mosFormat(total, 'storageUsed') %> <span>TB</span></h3>
+								</div>
+							</div>
+						
+							<div id="capacity" class="bg-color turqoise usageTwinBox" >
+								<div class="box-padding aligncenter">
+									<h5 class="no-margin normal">Capacity</h5>
+									<h3 class="no-margin normal summaryH3Data"><%= mosFormat(total, 'storageCapacity') %> <span>TB</span></</h3>
+								</div>
+							</div>
+                        </div>
+
+						<div class="bg-color white rounded-bottom">
+							<div class="accordion" id="accordionPanel">
+                            
+                            
+			             	<div class="accordion-group">
+				                  <div class="accordion-heading">
+				                    <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+				                      <h4 class="pull-left">Application Status</h4>
+				                    </a>
+				                  </div>
+				                  <div id="collapseOne" class="accordion-body collapse in">
+				                    <div class="accordion-inner">
+				                    	<ul class="unstyled">
+				                    		<li class="clearfix">
+				                    			<p class="pull-left">Launch</p>
+												<p class="pull-right"><%= mosFormat(runstatus, 'launch') %></p>
+				                    		</li>
+				                    		<li class="clearfix">
+				                    			<p class="pull-left">Configure</p>
+												<p class="pull-right"><%= mosFormat(runstatus, 'configure') %></p>
+				                    		</li>
+                                           	<li class="clearfix">
+				                    			<p class="pull-left">Initialize</p>
+												<p class="pull-right"><%= mosFormat(runstatus, 'initialize') %></p>
+				                    		</li>
+                                            <li class="clearfix">
+				                    			<p class="pull-left">Active</p>
+												<p class="pull-right"><%= mosFormat(runstatus, 'active') %></p>
+				                    		</li>
+				                    	</ul>
+				                    </div>
+				                  </div>
+				                </div>
+                                
+                           <div class="accordion-group">
+				                  <div class="accordion-heading">
+				                    <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
+				                      <h4 class="pull-left">Service Status</h4>
+				                    </a>
+				                  </div>
+				                  <div id="collapseFour" class="accordion-body collapse in">
+				                    <div class="accordion-inner">
+				                    	<ul class="unstyled">
+				                    		<li class="clearfix">
+				                    			<p class="pull-left">Launch</p>
+												<p class="pull-right"><%= mosFormat(servicerunstatus, 'launch') %></p>
+				                    		</li>
+				                    		<li class="clearfix">
+				                    			<p class="pull-left">Configure</p>
+												<p class="pull-right"><%= mosFormat(servicerunstatus, 'configure') %></p>
+				                    		</li>
+                                           	<li class="clearfix">
+				                    			<p class="pull-left">Initialize</p>
+												<p class="pull-right"><%= mosFormat(servicerunstatus, 'initialize') %></p>
+				                    		</li>
+                                            <li class="clearfix">
+				                    			<p class="pull-left">Active</p>
+												<p class="pull-right"><%= mosFormat(servicerunstatus, 'active') %></p>
+				                    		</li>
+				                    	</ul>
+				                    </div>
+				                  </div>
+				                </div>
+                            
+                            
+				                <div class="accordion-group">
+				                  <div class="accordion-heading">
+				                    <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+				                      <h4 class="pull-left">System Resources</h4>
+				                    </a>
+				                  </div>
+				                  <div id="collapseTwo" class="accordion-body collapse in">
+				                    <div class="accordion-inner">
+				                    	<ul class="unstyled">
+							                <li class="clearfix">
+				                    			<p class="pull-left">CPU</p>
+				                    			<p class="pull-right"><%= mosFormat(average, 'cpuPercent') %>&#37;</p>
+				                    		</li>
+				                    		<li class="clearfix">
+				                    			<p class="pull-left">Real Memory</p>
+				                    			<p class="pull-right"><%= mosFormat(average, 'memoryPercent') %>&#37;</p>
+				                    		</li>
+                                           	<li class="clearfix">
+				                    			<p class="pull-left">Bandwidth</p>
+				                    			<p class="pull-right"><%= mosFormat(average, 'bandwidthPercent') %>&#37;</p>
+				                    		</li>
+				                    	</ul>
+				                    </div>
+				                  </div>
+				                </div>
+
+				             	<div class="accordion-group">
+				                  <div class="accordion-heading">
+				                    <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+				                      <h4 class="pull-left">Alerts</h4>
+				                      <span class="label label-inverse pull-right">1</span>
+				                    </a>
+				                  </div>
+				                  <div id="collapseThree" class="accordion-body collapse in">
+				                    <div class="accordion-inner">
+				                    	<ul class="unstyled">
+                                            <li class="clearfix">
+				                    			<p class="pull-left">Alert</p>
+                                                <p class="pull-right">Alert</p>
+				                    		</li>
+				                    	</ul>
+				                    </div>
+				                  </div>
+				                </div>
+				            </div>
+						</div>
+					</div>
+			</div>
+		</div>
+</section>

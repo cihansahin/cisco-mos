@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MOS Application Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="js/library/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <link href="css/styler/style.css" rel="stylesheet">
+        <link href="css/btn-box.css" rel="stylesheet">
+        <link href="js/library/syntaxHighlighter/shCore.css" rel="stylesheet" type="text/css" />
+        <link href="js/library/syntaxHighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="css/styler/fontello.css">
+        <link rel="stylesheet" href="css/styler/animation.css"><!--[if IE 7]>
+        <link rel="stylesheet" href="css/styler/fontello-ie7.css"><![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link href="js/video-js/video-js.css" rel="stylesheet" type="text/css">
+        <link href="css/mosStyle.css" rel="stylesheet" type="text/css">
+        
+         <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
+
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+	    <script type="text/javascript" src="socket.io/socket.io.js"></script>
+  
+
+</head>
+
+<body>
+
+<div>
+
+	<div id="header" class="header"></div>
+	<div class="mosContent">
+    	<div class="row-fluid">
+        
+        	<div id="contentMain">
+        	</div>
+        
+        	<div id="summarydata">
+        	</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+    </footer>
+
+</div>
+<!-- /container -->
+
+
+
+<!-- Javascript -->
+<!-- JS:jquery-->
+<script src="js/googleapisjquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/library/jquery/jquery.min.js">\x3C/script>')</script>
+<script src="lib/underscore-min.js"></script>
+<script src="lib/backbone-min.js"></script>
+<script src="js/library/jquery/jquery-ui.min.js"></script>
+
+<!-- JS:masonry-->
+<script src="js/library/masonry/jquery.masonry.min.js"></script>
+
+<!-- JS:flexslider-->
+<script src="js/library/flexslider/jquery.flexslider-min.js"></script>
+
+<!-- JS:tables-->
+<script src="js/library/dataTables/jquery.dataTables.min.js"></script>
+
+<!-- JS:calendar-->
+<script src="js/library/fullcalendar/fullcalendar.min.js"></script>
+<script src="js/library/fullcalendar/gcal.js"></script>
+
+<!-- JS:forms-->
+<script src="js/library/forms/jquery.hotkeys.js"></script>
+<script src="js/library/forms/bootstrap-wysiwyg.js"></script>
+<script src="js/library/forms/picker.js"></script>
+<script src="js/library/forms/picker.date.js"></script>
+<script src="js/library/forms/picker.time.js"></script>
+<script src="js/library/forms/jquery.bootstrap.wizard.min.js"></script>
+
+<!-- JS:charts-->
+<script src="js/library/charts/jquery.flot.js"></script>
+<script src="js/library/charts/jquery.flot.resize.js"></script>
+<script src="js/library/charts/jquery.flot.stack.js"></script>
+<script src="js/library/charts/jquery.flot.pie.min.js"></script>
+<script src="js/library/charts/jquery.sparkline.min.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
+
+<!-- JS:syntaxHighlighter-->
+<script src="js/library/syntaxHighlighter/shCore.js"></script>
+<script src="js/library/syntaxHighlighter/shBrushCss.js"></script>
+<script src="js/library/syntaxHighlighter/shBrushXml.js"></script>
+<script src="js/library/syntaxHighlighter/shBrushJScript.js"></script>
+
+<!-- JS:bootstrap-->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<!-- VIDEO JS -->
+<script src="js/video-js/video.js"></script>
+
+
+
+
+
+
+<script src="js/utils.js"></script>
+<script src="js/models/models.js"></script>
+<script src="js/views/paginator.js"></script>
+<script src="js/views/header.js"></script>
+<script src="js/views/home.js"></script>
+<script src="js/views/summarydata.js"></script>
+<script src="js/views/applist.js"></script>
+<script src="js/views/applauncher.js"></script>
+<script src="js/views/appinstancelist.js"></script>
+<script src="js/views/appinstancegrid.js"></script>
+<script src="js/views/appaddinstance.js"></script>
+<script src="js/views/appinstancedisplay.js"></script>
+<script src="js/views/appchart.js"></script>
+<script src="js/views/appdetails.js"></script>
+<script src="js/views/apptranscodejob.js"></script>
+<script src="js/views/servicelist.js"></script>
+<script src="js/views/serviceaddinstance.js"></script>
+<script src="js/views/serviceinstancelist.js"></script>
+<script src="js/views/serviceinstancegrid.js"></script>
+<script src="js/views/serviceinstancedisplay.js"></script>
+<script src="js/views/resourcelist.js"></script>
+<script src="js/views/channellineuplist.js"></script>
+<script src="js/views/channelinstancelist.js"></script>
+<script src="js/views/channeladdinstance.js"></script>
+<script src="js/views/channelinstancedisplay.js"></script>
+<script src="js/views/about.js"></script>
+<script src="js/views/appvideoplayer.js"></script>
+<script src="js/main.js"></script>
+
+<!-- JS:custom js for this template -->
+<script src="js/styler/custom.js"></script>
+
+
+
+
+
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- <script src="lib/jquery-1.8.2.min.js"></script>
+ -->
+
+
+<!-- <script src="lib/Chart.min.js"></script>
+<script src="lib/smoothie.js"></script>
+ -->
+
+
+</body>
+</html>

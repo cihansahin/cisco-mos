@@ -1,0 +1,98 @@
+<div class="instanceGraph">
+            <div class="widget">
+            <div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-award">Performance Statistics</i></span>
+        	</div>
+            
+            
+				<div class="widget bg-color dark-grey rounded">
+					<div class="box-padding">
+						<div id="flot-line-filled" class="graph-area charts"></div>
+					</div>
+			</div>
+                
+            <div class="graphul" style="background-color:#FF0000">
+        	<ul>
+        		<li><img class="indicatorBlue"/><span>CPU</span></li>
+            	<li><img class="indicatorGreen"/><span>Real Memory</span></li>
+            	<li><img class="indicatorRed"/><span>Net</span></li>
+        	</ul>
+            
+            
+            <div class="addFormButtons" style="float:right">
+                 <a href="#listInstances" class="btn btn-turqoise">OK</a>
+            </div>
+                
+
+                </div>
+            </div>
+        </div>
+
+<script>
+
+$(document).ready(function () {
+	
+	function setupData () {
+		var cpuData = [[0,"<%= mosFormat(total, 'storageUsed') %>"], [1,"<%= mosFormat(total, 'storageUsed') %>"]];
+		var memData = [[0,"<%= mosFormat(total, 'activeRecordings') %>"], [1,"<%= mosFormat(total, 'activeRecordings') %>"]];
+		var bandData = [[0,"<%= mosFormat(total, 'activePlaybacks') %>"], [1,"<%= mosFormat(total, 'activePlaybacks') %>"]];
+
+		var colors = [ "#ef754a", "#2abf9e", "#00AAFF" ];
+		
+		var stack = 1,
+			bars = true,
+			lines = false,
+			steps = false;
+
+		function graphPlot () {
+			if( $("#flot-line-filled").length > 0 ){
+				$.plot (
+					$("#flot-line-filled"), [ cpuData, memData, bandData ], {
+						xaxis: {
+							font: {
+							    color: "#ccc",
+							    size: 12,
+							}
+						},
+						yaxis: {
+							font: {
+							    color: "#ccc",
+							    size: 12,
+							}
+						},
+					    series: {
+							lines: { 
+								show: true,
+								lineWidth: 5,
+								fill: .8,
+							},
+							points: { 
+								show: true,
+								radius: 0,
+							},
+						},
+						grid: {
+							show:true,
+							clickable: true,
+						    hoverable: true,
+						    autoHighlight: true,
+						    mouseActiveRadius: 10,
+						    aboveData: true,
+						    backgroundColor: "#333",
+						    borderWidth: 0,
+						    minBorderMargin: 25,
+						},
+						colors: colors,
+					    shadowSize: 0,
+					}
+				);
+			}
+		}
+	
+		graphPlot();
+		
+	}
+	setupData();
+});
+
+</script>

@@ -1,0 +1,647 @@
+
+/* =========================  */
+/* ==== BitBlitz Styles ====  */
+/* =========================  */
+
+/* === Util === */
+
+.fullClear{
+	width:100%; margin:0px; padding:0px;
+}
+
+.floatLeftContent{
+	float:left;
+}
+
+.floatRightContent{
+	float:right;
+}
+
+
+/* === Main --- */
+
+
+.mosContent{
+	margin:0px auto;
+	max-width: 1200px;
+	min-width: 1120px;
+	padding-top:15px;
+}
+
+#contentMain{
+	float:none; 
+	width:600px;
+	margin:0px auto;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+#summarydata{
+	float:right; 
+	width:375px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+/* === Header ===*/
+
+.logoBrand{
+	padding-left:50px;	
+}
+
+.logoBrand img{
+	padding-right:10px;
+}
+
+.logoBrand span{
+  color: #fff;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  display: block;
+  text-align:center;
+  font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+.logoBrand span.subTitle{
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+  padding-top:5px;
+}
+
+.subHeader{
+    margin-top: 0px;
+    margin-bottom: 0px;
+	width:inherit;
+	background-color:#FFF;
+	height:100px;
+	vertical-align: middle;
+	
+}
+
+.subHeaderContent{
+	width:100%;
+	vertical-align:middle;
+}
+
+.subHeaderTitle{
+	height:inherit;
+	font-size:36px;
+	font-weight:600;
+	padding-left:75px;
+	height:inherit;	
+	float:left;
+	padding-top:15px;
+	color:#000000;
+}
+
+.subHeaderTitle img{
+	padding-right:10px;
+	padding-bottom:10px;
+}
+
+.subHeaderButtons{
+	float:left;
+	padding-top:30px;
+	padding-left:40px;
+}
+
+.subHeaderButtonsRight{
+	float:right;
+	padding-top:47px;
+	padding-right:20px;
+}
+
+.listButton{
+  padding: 4px 30px 6px 0px;
+  background:url(../../img/listIcon.png) top no-repeat;
+  width:16px;
+}
+
+.gridButton{
+  padding: 5px 0px 5px 30px;
+  background:url(../../img/gridIcon.png) top no-repeat;
+  width:16px;
+}
+
+.btn.btn-grey {
+  background: #E5E5E5;
+  color: #393A3E;
+  border-color: #F0F0F0;
+  border-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  padding: 3px 10px;
+  font-size:12px;
+  font-weight:500;
+}
+
+.btn.btn-grey .caret {
+  border-top-color: #fff;
+}
+.btn.btn-grey:hover {
+  background: #A9A9A9;
+  border-color: #A9A9A9;
+}
+
+.btn.btn-turqoise
+{
+  background: #2abf9e;
+  color: #FFF;
+  border-color: #F0F0F0;
+  border-style:solid;
+  border-width:1px;
+  padding: 5px 30px;
+  font-size:12px;
+  font-weight:500;
+}
+
+/* === Status Panel === */
+
+.statusView{
+	width:375px;
+	float:right; 
+	padding-top:0px;
+}
+
+.status-label{
+  font-size: 12px;
+  line-height: 20px;
+  padding-left:15px;
+}
+
+.status-count-label{
+	width:15px;
+	text-align:center;
+}
+
+.summaryDualBox{
+	
+}
+
+.usageTwinBox{
+	float:right; 
+	width:185px; 
+	border:#C0D1D3 solid 1px; 
+
+}
+
+.summaryTriBox{
+	background-color:#474E56;
+	border:#404349 solid 1px; 
+	width:123px;
+	float:left;
+	text-align:center;
+	height:115px;
+}
+
+.summaryTriBoxTitle{
+	font-weight:500;	
+	font-size:12px;
+	text-align:center;
+	padding-top:25px;
+	margin-top:40px;
+}
+
+.summaryTriBoxData{
+	font-weight:400;	
+	font-size:35px;
+	text-align:center;
+}
+
+.summaryH3Data{
+	padding-top:10px;
+}
+
+/* === Instance Table, List View === */
+
+.instanceTable{
+	width:100%;
+}
+
+.instanceTable, td{
+	border: 1px solid #E9E9E9;
+	background-color:#F5F5F5;
+	text-align:center;
+	color:#474E56;
+	
+	padding-left:30px;
+	padding-right:30px;
+	
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.instanceTable, th
+{
+	border: 1px solid #E9E9E9;
+	background-color:#474E56;
+	color:#F5F5F5;
+	font-size:14px;
+	
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.instanceTable span{	
+	float:right;
+}
+
+.instanceTable p{	
+	float:right;
+	width:65%;
+	height:20px;
+	font-size:10px;
+	padding-top:8px;
+}
+
+.instanceTable img{
+	display:inline;
+	float:left;
+	padding-top:4px;
+}
+
+.idtd{
+	min-width:200px;
+	padding-left:10px;
+	padding-right:20px;
+}
+
+.statustd{
+	min-width:65px;
+	text-align:center;
+}
+
+.instanceTable ul{
+	list-style-type: none;
+	background-color:#996633;
+	min-width:65px;
+}
+
+.instanceTable ul li{ 
+	display: inline;
+	
+}
+
+.radioButtonCustom{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/* === Grid List ===  */
+
+.appGridItemView{
+	width:225px; 
+	padding-left:15px; 
+	padding-right:15px;
+	 padding-top:0px;
+}
+
+.gridItemViewContainer{
+	background-color:#FFF;
+	height:200px;
+}
+
+.gridItemul ul{
+	padding-top:5px;
+	padding-left:5px;
+    list-style-type: none;
+	margin-left:auto;
+}
+
+.gridItemul li{
+	padding-top:4px;
+	padding-bottom:4px;
+	list-style-type: none;
+}
+
+.gridItemTitle{
+	padding-top:10px; 
+	padding-left:5px; 
+	color:#FFF; 
+	font-size:14px; 
+	font-weight:600;
+	float:left;
+}
+
+.gridItemul span{
+	padding-left:7px;
+	height:20px;
+	font-weight:400;
+}
+
+.gridItemId{
+	border-top:1px solid #F3F3F3;
+	width:inherit;
+	height:35px;
+}
+
+.gridItemId span{
+	padding-left:5px;
+	font-size:9px;
+	padding-top:18px;
+	float:left;
+}
+
+.gridItemId img{
+	padding-right:5px;
+	padding-top:13px;
+	float:right;
+}
+
+/* === Graph === */
+
+.instanceGraph{
+	margin:0 auto;
+	width:inherit;
+}
+
+.graphul ul{
+	padding-top:0px;
+	padding-left:0px;
+    list-style-type: none;
+	margin-left:auto;
+	width:300px;
+	float:left;
+}
+
+.graphul li{
+	padding-top:0px;
+	padding-bottom:4px;
+	list-style-type: none;
+}
+
+.graphul span{
+	padding-left:7px;
+	height:20px;
+	font-weight:400;
+}
+
+/* === Adding Applications Screens === */
+
+.addApplicationItemContainer{
+	float: left;
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width:220px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:15px;
+}
+
+.addApplicationItemHeader{
+	padding-top:10px; 
+	background-color:#43484D;
+	height:30px;
+}
+
+.addApplicationItemHeader span{
+	float:left;
+	color:#FFF;
+	padding-left:10px;
+	font-weight:600;
+	padding-bottom:0px;
+}
+
+.addApplicationItemIconSection{
+	width:inherit;
+	height:70px;
+	background-color:#FFF;
+	border-bottom:solid 1px #ECECEC;
+	padding-bottom:0px;
+}
+
+.addApplicationItemIconSection span{
+	font-size:12px;
+	font-weight:700;
+	float:left;
+	padding-left:10px;
+	padding-top:25px;
+	color:#43484D;
+}
+
+.addApplicationIcon{
+	float:right;
+	min-width:60px;
+	min-height:60px;
+	margin-top:13px;
+	margin-right:10px;
+}
+
+.addApplicationIcon img{
+	padding-right:5px;
+	padding-top:1px;
+	float:right;
+}
+
+.addApplicationSectionHeader{
+	padding-top:5px;
+	padding-bottom:7px;
+	padding-left:20px;
+	width:inherit;
+	font-weight:500;
+}
+
+.addApplicationCheckbox{
+	margin-top:3px;
+
+}
+
+.addApplicationDesctiptionSection{
+	width:inherit;
+	height:60px;
+	background-color:#F5F5F5;
+}
+
+.addApplicationDesctiptionSection p{
+	font-size:10px;
+	font-weight:600;
+	padding-left:10px;
+	padding-right:10px;
+	width:inherit;
+	padding-top:5px;
+	margin:0;
+}
+
+.addApplicationFormSection{
+	width:inherit;
+	background-color:#F5F5F5;
+	padding-top:10px;
+	color: #43484D;
+	padding-left:20px;
+}
+
+.addFormLabel{
+  float: left;
+  width: 160px;
+  padding-top: 7px;
+  padding-right:20px;
+  text-align: right;
+  font-size:12px;
+}
+
+.addFormButtons{
+  padding: 5px 5px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float:right;
+}
+
+.addApplicationNameSection{
+	width:inherit;
+	height:60px;
+	background-color:#F5F5F5;
+	border-bottom:solid 1px #ECECEC;
+}
+
+.addApplicationNameSection span{
+	font-size:12px;
+	font-weight:700;
+	float:left;
+	padding-left:10px;
+	padding-top:20px;
+	color:#43484D;
+}
+
+.addApplicationStatus{
+	
+	padding-left:145px;
+	padding-bottom:20px;
+}
+
+/* === Indicators === */
+
+.indicatorRed{
+    content:url("../../img/indicatorRed.png");
+	margin-top:-2px;
+}
+
+.indicatorGreen{
+    content:url("../../img/indicatorGreen.png");
+	margin-top:-2px;
+}
+
+.indicatorYellow{
+    content:url("../../img/indicatorYellow.png");
+	margin-top:-3px;
+}
+
+.indicatorBlue{
+    content:url("../../img/indicatorBlue.png");
+	margin-top:-3px;
+}
+
+.indicatorClear{
+    content:url("../../img/indicatorClear.png");
+	margin-top:-3px;
+}
+
+/* === TEST === */
+
+.demo-container {
+	box-sizing: border-box;
+	width: 850px;
+	height: 450px;
+	padding: 20px 15px 15px 15px;
+	margin: 15px auto 30px auto;
+	border: 1px solid #ddd;
+	background: #fff;
+	background: linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+	box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.2em;
+}
+
+.legend table {
+	border-spacing: 5px;
+}
+
+/* === Video Player */
+
+.videoPlayerContainer{
+	background-color:#000;	
+	height:400px;
+	padding-top:20px;
+	padding-bottom:20px;
+	width:1000px;
+	margin: 0 auto;
+}
+
+.videoContainer{
+	margin: 0 auto;
+	width:900px;
+	margin-bottom:20px;
+}
+
+.videoPlayerControls{
+	background-color:#1a1a1a;
+	padding-left:10px;
+	height:45px;
+	padding-right:10px;
+	padding-top:5px;
+}
+
+.videoPlayButton{
+	width:44px;
+	height:39px;
+}
+
+.videoPlayButton:hover{
+	background-color:#363636;
+}
+
+.videoPlayerCarousel{
+	background-color:#bababa;
+	height:150px;
+	border-top:1px solid #5a5a5a;
+}
+
+.videoPlayerCarousel ul{
+	margin: 0;
+    list-style-type: none;
+	margin-left:auto;
+	height:150px;
+	padding-top:15px;
+	overflow-x: auto;
+  	white-space: nowrap;
+	overflow-y:hidden;
+	
+}
+
+.videoPlayerCarousel li{
+	background-color:#000000;
+	height:120px;
+	width:200px;
+	margin-left: 5px;
+	margin-right: 5px;
+	display:inline-block;
+	overflow:hidden;
+}
+
+.videoPlayerCarousel li img{
+	display:block;
+	overflow:hidden;
+	clear:both;
+}
+
+
+/* =========================  */
+/* ===== End BitBlitz ======  */
+/* =========================  */

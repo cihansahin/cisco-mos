@@ -1,0 +1,231 @@
+<div class="container">
+            <div class="widget span8">
+            <div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-plus-circle-1"></i> EDIT SERVICE</span>
+        	</div>
+                <div id="instanceForm" class="row-fluid">
+                     <form class="form-horizontal span12">
+                        <fieldset>
+                            <div class="addApplicationItemHeader"><span><%= name.toUpperCase()  %></span></div>
+                            <div class="addApplicationItemIconSection">
+        						<span><%= name.toUpperCase() %></span>
+            					<div class ="addApplicationIcon">
+									<img src='../pics/channels.png' alt=""/>
+								</div>
+        					</div>
+                                
+                           <div class="addApplicationFormSection">
+
+                            <div class="row">
+                               
+                                <div class="span8">
+                                	<div class="addApplicationSectionHeader">
+                                		<span>Basic Settings</span>
+                               		</div>
+                                    <div class="control-group">
+                                        <label for="instanceName" class="addFormLabel">Name:</label>
+
+                                        <div class="controls">
+                                            <input id="instanceName" name="name" type="text" value="<%= name %>" />
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label for="serviceSize" class="addFormLabel">Size:</label>
+
+                                        <div class="controls">
+                                            <select name="size" id="size">
+                                            	<option value="1">Small</option>
+                                                <option value="2">Medium</option>
+                                                <option value="3">Large</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="addApplicationSectionHeader">
+                                		<span>Input Settings</span>
+                               		</div>
+
+                                    <div class="control-group">
+                                        <label for="channelLineup" class="addFormLabel">Channel Lineup:</label>
+
+                                        <div class="controls">
+                                            <select name="channelLineup" id="channelLineup">
+                                            	<option value="">-Select a channel lineup-</option>
+    											<% _(channelLineupList).each(function(cl) { %>
+      											<option value="<%= cl._id %>"><%= cl.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="encryption" class="addFormLabel">Encryption:</label>
+
+                                        <div class="controls">
+                                            <select id="encryption" name="encryption">
+                                            	<option value="Enabled">Enabled</option>
+                                                <option value="Disabled">Disabled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="addApplicationSectionHeader">
+                                		<span>Storage Settings</span>
+                               		</div>
+                                    
+                                    
+                                    <div class="control-group">
+                                        <label for="storagePolicy" class="addFormLabel">Storage Policy:</label>
+
+                                        <div class="controls">
+                                            <select id="storagePolicy" name="storagePolicy" >
+                                            	<option value="">-Select a storage policy-</option>
+    											<% _(storagePolicyList).each(function(sp) { %>
+      											<option value="<%= sp._id %>"><%= sp.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                  	<div class="control-group">
+                                        <label for="archivePolicy" class="addFormLabel">Archive Policy:</label>
+
+                                        <div class="controls">
+                                            <select id="archivePolicy" name="archivePolicy" >
+                                            	<option value="">-Select an archive policy-</option>
+    											<% _(archivePolicyList).each(function(ap) { %>
+      											<option value="<%= ap._id %>"><%= ap.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="addApplicationSectionHeader">
+                                		<span>Playout Settings</span>
+                               		</div>
+                                    
+                                    <div class="control-group">
+                                        <label for="abrProfile" class="addFormLabel">ABR Profile:</label>
+
+                                        <div class="controls">
+                                            <select id="abrProfile" name="abrProfile">
+                                            	<option value="">-Select an ABR profile-</option>
+    											<% _(abrTemplateList).each(function(abr) { %>
+      											<option value="<%= abr._id %>"><%= abr.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="drmProfile" class="addFormLabel">DRM Profile:</label>
+
+                                        <select id="drmProfile" name="drmProfile">
+                                            	<option value="">-Select a DRM profile-</option>
+    											<% _(drmTemplateList).each(function(drm) { %>
+      											<option value="<%= drm._id %>"><%= drm.name %></option>
+    												<% }); %>
+                                            </select>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="supportedOutputFormats" class="addFormLabel" style="height:100px">Output Formats:</label>
+
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" name="HLS" value="HLS">HLS</input>
+                                        </div>
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" name="HSS" value="HSS">HSS</input>
+                                        </div>
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" name="HDS" value="HDS">HDS</input>
+                                        </div>
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" name="ATIS" value="ATIS">ATIS</input>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                </div>
+
+
+                            </div>
+
+                        </fieldset>
+
+                        <div class="addFormButtons">
+                            <a href="#" class="btn btn-turqoise save">OK</a>
+                        </div>
+
+                    </form>
+	
+
+                </div>
+                
+            </div>
+
+            <div class="row-fluid status-bar">
+                <div class="span12">
+                    <div class="alert alert-success" style="display: none">
+                        <b>Success!</b> App saved successfully
+                    </div>
+                </div>
+            </div>
+
+
+</div>
+
+<script>
+
+$(document).ready(function () {
+	
+	var sp = document.getElementById('storagePolicy');
+	for (var i = 0; i < sp.options.length; i++) {
+    	if (sp.options[i].value === "<%= storagePolicy %>") {
+        	sp.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var abr = document.getElementById('abrProfile');
+	for (var i = 0; i < abr.options.length; i++) {
+    	if (abr.options[i].value === "<%= abrProfile %>") {
+        	abr.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var cl = document.getElementById('channelLineup');
+	for (var i = 0; i < cl.options.length; i++) {
+    	if (cl.options[i].value === "<%= channelLineup %>") {
+        	cl.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var ap = document.getElementById('archivePolicy');
+	for (var i = 0; i < ap.options.length; i++) {
+    	if (ap.options[i].value === "<%= archivePolicy %>") {
+        	ap.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var drm = document.getElementById('drmProfile');
+	for (var i = 0; i < drm.options.length; i++) {
+    	if (drm.options[i].value === "<%= drmProfile %>") {
+        	drm.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	
+	
+	
+ });
+ 
+ 
+
+</script>

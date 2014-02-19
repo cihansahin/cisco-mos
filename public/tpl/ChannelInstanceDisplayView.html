@@ -1,0 +1,179 @@
+<div class="container">
+            <div class="widget span8">
+            <div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-plus-circle-1"></i> EDIT CHANNEL</span>
+        	</div>
+                <div id="instanceForm" class="row-fluid">
+                     <form class="form-horizontal span12">
+                        <fieldset>
+                            <div class="addApplicationItemHeader"><span><%= name.toUpperCase()  %></span></div>
+                            <div class="addApplicationItemIconSection">
+        						<span><%= name.toUpperCase() %></span>
+            					<div class ="addApplicationIcon">
+									<img src='../pics/channels.png' alt=""/>
+								</div>
+        					</div>
+                                
+                          <div class="addApplicationFormSection">
+
+                            <div class="row">
+
+                               
+                                <div class="span8">
+                                
+                                
+                                
+                                <div class="control-group">
+                                        <label for="instanceName" class="addFormLabel">Name:</label>
+
+                                        <div class="controls">
+                                            <input id="instanceName" name="name" type="text" value="<%= name %>" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="logo" class="addFormLabel">Logo:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="logo" name="logo"
+                                                   value="<%= logo %>"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="channelId" class="addFormLabel">Channel ID:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="channelId" name="channelId"
+                                                   value="<%= channelId %>"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="storagePolicy" class="addFormLabel">Storage Policy:</label>
+
+                                        <div class="controls">
+                                            <select id="storagePolicy" name="storagePolicy" >
+                                            	<option value="">-Select a storage policy-</option>
+    											<% _(storagePolicyList).each(function(sp) { %>
+      											<option value="<%= sp.name %>"><%= sp.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="retentionDays" class="addFormLabel">Retention Days:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="retentionDays" name="retentionDays"
+                                                   value="<%= retentionDays %>"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="abr" class="addFormLabel">ABR Profile:</label>
+
+                                        <div class="controls">
+                                            <select id="abr" name="abr">
+                                            	<option value="">-Select an ABR profile-</option>
+    											<% _(abrTemplateList).each(function(abr) { %>
+      											<option value="<%= abr.name %>"><%= abr.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="playoutMpegTs" class="addFormLabel">Playout MPEG-TS:</label>
+
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" id="playoutMpegTs" name="playoutMpegTs" value="mpeg"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="playoutABR" class="addFormLabel">Playout ABR:</label>
+
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" id="playoutABR" name="playoutABR" value="playoutABR"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="encryption" class="addFormLabel">Encryption:</label>
+
+                                        <div class="controls addApplicationCheckbox">
+                                            <input type="checkbox" id="encryption" name="encryption" value="encryption"/>
+                                        </div>
+                                    </div>
+                                
+                                
+                                 
+                                
+                                </div>
+                                
+                            
+                           
+                            </div>
+
+                         </div>
+
+                        </fieldset>
+
+                        <div class="addFormButtons">
+                            <a href="#" class="btn btn-turqoise save">OK</a>
+                        </div>
+
+                    </form>
+	
+
+                </div>
+                
+            </div>
+
+            <div class="row-fluid status-bar">
+                <div class="span12">
+                    <div class="alert alert-success" style="display: none">
+                        <b>Success!</b> App saved successfully
+                    </div>
+                </div>
+            </div>
+
+
+</div>
+
+<script>
+
+$(document).ready(function () {
+	
+	var sp = document.getElementById('storagePolicy');
+	for (var i = 0; i < sp.options.length; i++) {
+    	if (sp.options[i].text === "<%= storagePolicy %>") {
+        	sp.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var abr = document.getElementById('abr');
+	for (var i = 0; i < abr.options.length; i++) {
+    	if (abr.options[i].text === "<%= abr %>") {
+        	abr.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var playoutMpegTs = document.getElementById('playoutMpegTs');
+	var playoutABR = document.getElementById('playoutABR');
+	var encryption = document.getElementById('encryption');
+	playoutMpegTs.checked= ("<%= playoutMpegTs %>" === "true");
+	playoutABR.checked= ("<%= playoutABR %>" === "true");
+	encryption.checked= ("<%= encryption %>" === "true");
+	
+	
+	
+ });
+ 
+ 
+
+</script>

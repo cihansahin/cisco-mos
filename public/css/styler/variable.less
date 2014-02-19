@@ -1,0 +1,276 @@
+@import url(colors.less);
+@import url(theme.less);
+
+.aligncenter	{text-align: center}
+.alignleft		{text-align: left}
+.alignright		{text-align: right}
+.uppercase		{text-transform: uppercase}
+.no-margin 			{margin: 0;}
+.no-margin-bottom 	{margin-bottom: 0}
+.no-margin-top 		{margin-top: 0}
+
+.bg-color, .widget .bg-color {
+	p {color: #777;}
+	h1, h2, h3, h4, h5, h6 {color:#333;}
+	
+	&.white {
+		background:#fff;
+	}
+	&.orange 		{
+		background: @orange; 
+	}
+	&.green 		{
+		background: @green; 
+	}
+	&.light-green 	{
+		background: @light-green; 
+	}
+	&.turqoise	{
+		background: @turqoise; 
+	}
+	&.blue			{
+		background: @blue; 
+	}
+	&.dark-blue		{
+		background: @dark-blue; 
+	}
+	&.dark-grey 	{
+		background: @dark-grey; 
+	}
+	&.grey			{
+		background: @grey; 
+	}
+	&.yellow		{
+		background: @yellow; 
+	}
+	&.red			{
+		background: @red; 
+	}
+	&.brown			{
+		background: @brown; 
+	}
+	&.purple		{
+		background: @purple; 
+	}
+	&.pink			{
+		background: @pink; 
+	}
+	&.black			{
+		background: @black; 
+	}
+	&.darker-bg		{
+		background: @darker-bg; 
+	}
+	&.light-grey {
+		background: @light-grey;
+		p {color: #666;}
+		h1, h2, h3, h4, h5, h6 {color:#333;}
+	}
+
+	&.orange, &.green, &.light-green, &.turqoise, 
+	&.blue, &.dark-blue, &.dark-grey, &.grey, &.yellow, &.red, 
+	&.brown, &.purple, &.pink, &.black, &.darker-bg {
+		color: #fff;
+		h1, h2, h3, h4, h5, h6 {color:#fff;}
+		p {color:rgba(255,255,255,0.8);}
+		a {color:rgba(255,255,255,0.8);}
+		input, textarea {border:none !important;}
+	} 
+
+	.hero-unit {
+		h1 {color: #fff}
+		p.lead {color: rgba(255,255,255,0.8)}
+	}
+}
+.btn {
+	background:#ddd;
+	border:none;
+	box-shadow:none;
+	text-shadow:none;
+	color: #555;
+	padding:8px 20px;
+	border-radius: 3px;
+	-webkit-transition: All 0.5s ease;
+	-moz-transition: All 0.5s ease;
+	-o-transition: All 0.5s ease;
+	-ms-transition: All 0.5s ease;
+	transition: All 0.5s ease;
+
+	&:hover, &:focus {
+		background: rgba(0,0,0,0.3);
+		-webkit-transition: All 0.5s ease;
+		-moz-transition: All 0.5s ease;
+		-o-transition: All 0.5s ease;
+		-ms-transition: All 0.5s ease;
+		transition: All 0.5s ease;
+		box-shadow: none;
+
+	}
+	&.bordered {
+		border:rgba(0,0,0,0.1) solid 1px;
+		box-shadow: inset rgba(255,255,255,0.1) 0 1px 0;
+	}
+	&.no-radius {
+		border-radius: 0;
+	}
+
+	&.btn-primary {
+		background:@blue;
+		color: #fff;
+		&:hover {background: darken(@blue, 15%);}
+	}
+	&.btn-info {
+		background:@turqoise;
+		color: #fff;
+		&:hover {background: darken(@turqoise, 15%);}
+	}
+	&.btn-success {
+		background:@green;
+		color: #fff;
+		&:hover {background: darken(@green, 15%);}
+	}
+	&.btn-warning {
+		background:@yellow;
+		color: #fff;
+		&:hover {background: darken(@yellow, 15%);}
+	}
+	&.btn-danger {
+		background:@red;
+		color: #fff;
+		&:hover {background: darken(@red, 15%);}
+	}
+	&.btn-inverse {
+		background:@dark-grey;
+		color: #fff;
+		&:hover {background: darken(@dark-grey, 15%);}
+	}
+	&.btn-link {
+		color: @theme;
+		background:none;
+	}
+	&.btn-orange {
+		background: @orange;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@orange, 15%);
+		}
+	}
+	&.btn-blue {
+		background: @blue;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@blue, 15%);
+		}
+	}
+	&.btn-green {
+		background: @green;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@green, 15%);
+		}
+	}
+	&.btn-turqoise {
+		background: @turqoise;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@turqoise, 15%);
+		}
+	}
+	&.btn-yellow {
+		background: @yellow;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@yellow, 15%);
+		}
+	}
+	&.btn-red {
+		background: @red;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@red, 15%);
+		}
+	}
+	&.btn-pink {
+		background: @pink;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@pink, 15%);
+		}
+	}
+	&.btn-purple {
+		background: @purple;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@purple, 15%);
+		}
+	}
+	&.btn-brown {
+		background: @brown;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@brown, 15%);
+		}
+	}
+	&.btn-black {
+		background: @black;
+		color: #fff;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@black, 15%);
+		}
+	}
+	&.btn-bg-darker {
+		background: rgba(0,0,0,0.4);
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: rgba(0,0,0,0.6)
+		}
+	}
+	&.btn-dark-grey {
+		background: @dark-grey;
+		.caret {border-top-color: #fff;}
+		&:hover {
+			background: darken(@dark-grey, 15%);
+		}
+	}
+	&.btn-large {
+		padding:20px 40px;
+		border-radius: 5px;
+	}
+	&.btn-wide {
+		padding:8px 40px;
+	}
+	&.btn-small {
+		font-size: 12px;
+		padding:5px 15px;
+		letter-spacing: 1px;
+	}
+}
+
+.btn-group {
+	.btn {
+		border-left: rgba(255,255,255,0.5) solid 1px; 
+	}
+	&.open {
+		.btn {
+			&.dropdown-toggle {
+				background: rgba(0,0,0,0.3);
+				-webkit-transition: All 0.5s ease;
+				-moz-transition: All 0.5s ease;
+				-o-transition: All 0.5s ease;
+				-ms-transition: All 0.5s ease;
+				transition: All 0.5s ease;
+				box-shadow: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,106 @@
+<div class="container span12"  >
+
+		<div  class="widget span12" >
+        
+			<div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-right-circled"></i> DEPLOYED</span>
+                <div class="dropdown pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog-2"></i> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+				       <li><a id="sort1">Sort by Type</a></li>
+                       <li><a id="sort2">Sort by Name</a></li>
+					</ul>
+				</div>
+        	</div>
+
+
+			<div>
+				<table class="instanceTable">
+					<thead><th>ID</th><th>Names</th><th>Type</th><th>Status</th></thead>
+					<tbody>
+						<% for(var i=0; i<items.length; i++) { %>
+							<%= itemTemplate(items[i]) %>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+
+	</div>
+        
+</div>
+
+<script src="js/util/serviceListView.js"></script>
+
+<script>
+
+$(document).ready(function () {
+
+	function update(id, runstatus) {
+		setupStatusIndicators(id ,runstatus);
+	}
+			
+	function setupStatusIndicators (id, runstatus) {
+		
+		var clearNotification = "indicatorClear";
+		var greenNotification = "indicatorGreen";
+		var yellowNotification = "indicatorYellow";
+		var redNotification = "indicatorRed";
+		
+		
+		var statusint = parseInt(runstatus, 16);
+		
+		var launchID = "launch" +id;
+		var configID = "config" +id;
+		var initID = "init" +id;
+		var headerID = "gridItemHeader" +id;
+		
+		switch(statusint)
+			{
+			case 1:
+				document.getElementById(launchID).className = yellowNotification;
+				document.getElementById(configID).className = clearNotification;
+				document.getElementById(initID).className = clearNotification;
+  			break;
+			case 2:
+				document.getElementById(launchID).className = redNotification;
+				document.getElementById(configID).className = clearNotification;
+				document.getElementById(initID).className = clearNotification;
+  			break;
+			case 3:
+				document.getElementById(launchID).className = greenNotification;
+				document.getElementById(configID).className = yellowNotification;
+				document.getElementById(initID).className = clearNotification;
+  			break;
+			case 4:
+				document.getElementById(launchID).className = greenNotification;
+				document.getElementById(configID).className = redNotification;
+				document.getElementById(initID).className = clearNotification;
+  			break;
+			case 5:
+				document.getElementById(launchID).className = greenNotification;
+				document.getElementById(configID).className = greenNotification;
+				document.getElementById(initID).className = yellowNotification;
+  			break;
+			case 6:
+				document.getElementById(launchID).className = greenNotification;
+				document.getElementById(configID).className = greenNotification;
+				document.getElementById(initID).className = redNotification;
+  			break;
+			case 7:
+				document.getElementById(launchID).className = greenNotification;
+				document.getElementById(configID).className = greenNotification;
+				document.getElementById(initID).className = greenNotification;;
+  			break;
+			default:
+				document.getElementById(launchID).className = clearNotification;
+				document.getElementById(configID).className = clearNotification;
+				document.getElementById(initID).className = clearNotification;
+  			break;
+		}
+	}
+	
+ });
+ 
+ 
+
+</script>
