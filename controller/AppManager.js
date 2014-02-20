@@ -14,8 +14,10 @@ function AppManager(httpServer, expressApp) {
 	this.serviceManagerSocket = this.io.of('/serviceManager');
 	this.expressApp = expressApp;
 	this.httpServer = httpServer;
-	//this.dbConn = mongoose.connect('mongodb://localhost/appdb');
-        this.dbConn = mongoose.connect('mongodb://heroku_app22367884:63jbbsfvq6mm65fbehrbuh9m2b@ds033429.mongolab.com:33429/heroku_app22367884');
+        var mongoUri = process.env.MONGOLAB_URI ||
+          process.env.MONGOHQ_URL ||
+          'mongodb://localhost/mydb';
+	this.dbConn = mongoose.connect(mongoUri);
 	this.icons = {};
 	this.appModels = {};
 	this.serviceModels = {};
