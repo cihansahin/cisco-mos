@@ -20,7 +20,7 @@ app.configure(function () {
 		return next();
   	});
 
-    app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+    app.use(express.logger('default'));  /* 'default', 'short', 'tiny', 'dev' */
 	//app.use(express.bodyParser());
         app.use(express.json());
         app.use(express.urlencoded());

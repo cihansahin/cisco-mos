@@ -1,1 +1,1 @@
-web: node app-manager.js 8000
+web: node app-manager.js
