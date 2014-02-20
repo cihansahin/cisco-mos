@@ -17,7 +17,16 @@ function AppManager(httpServer, expressApp) {
         var mongoUri = process.env.MONGOLAB_URI ||
           process.env.MONGOHQ_URL ||
           'mongodb://localhost/mydb';
-	this.dbConn = mongoose.connect(mongoUri);
+
+	this.dbConn = mongoose.connect(mongoUri, function(err, res){
+	  if (err) {
+	  console.log("ERROR connecting to: " + mongoUri + ". " + err );
+          process.exit();
+	  } else {
+	  console.log ('Succeeded connected to: ' + mongoUri);
+	  }
+	});
+
 	this.icons = {};
 	this.appModels = {};
 	this.serviceModels = {};
@@ -774,7 +783,7 @@ function AppManager(httpServer, expressApp) {
 	// GET CHART DATA REQUEST.
 	this.chartDataRequest = function(req, res) {
 
-		self.debug('getChartData: req = ' + JSON.stringify(req.body));
+		//self.debug('getChartData: req = ' + JSON.stringify(req.body));
 		res.send(200, self.chartData);
 	}
 
@@ -942,7 +951,7 @@ function AppManager(httpServer, expressApp) {
 	// THIS IS WHERE WE GET THE CALLBACKS WHEN DB RECORDS ARE SAVED.
 	
 	this.onSummaryDataChange = function(summaryData) {
-		self.debug('onSummaryDataChange: summaryData = ' + JSON.stringify(summaryData));
+		//self.debug('onSummaryDataChange: summaryData = ' + JSON.stringify(summaryData));
 		self.appManagerSocket.emit('summarydata.update',summaryData)
 	}
 	
