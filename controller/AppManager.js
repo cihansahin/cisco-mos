@@ -14,19 +14,7 @@ function AppManager(httpServer, expressApp) {
 	this.serviceManagerSocket = this.io.of('/serviceManager');
 	this.expressApp = expressApp;
 	this.httpServer = httpServer;
-        var mongoUri = process.env.MONGOLAB_URI ||
-          process.env.MONGOHQ_URL ||
-          'mongodb://localhost/mydb';
-
-	this.dbConn = mongoose.connect(mongoUri, function(err, res){
-	  if (err) {
-	  console.log("ERROR connecting to: " + mongoUri + ". " + err );
-          process.exit();
-	  } else {
-	  console.log ('Succeeded connected to: ' + mongoUri);
-	  }
-	});
-
+	this.dbConn = mongoose.connect('mongodb://localhost/appdb');
 	this.icons = {};
 	this.appModels = {};
 	this.serviceModels = {};
@@ -395,6 +383,12 @@ function AppManager(httpServer, expressApp) {
 		self.expressApp.post('/channelLineup', self.insertChannelLineupRequest);
 		self.expressApp.put('/channelLineup/:id', self.updateChannelLineupRequest);
 		self.expressApp.delete('/channelLineup/:id', self.deleteChannelLineupRequest);
+		
+		self.expressApp.get('/encodingProfile/:id', self.findEncodingProfileByIdRequest);
+		self.expressApp.get('/encodingProfile', self.findEncodingProfilesRequest);
+		self.expressApp.post('/encodingProfile', self.insertEncodingProfileRequest);
+		self.expressApp.put('/encodingProfile/:id', self.updateEncodingProfileRequest);
+		self.expressApp.delete('/encodingProfile/:id', self.deleteEncodingProfileRequest);
 		
 		self.expressApp.get('/resource', self.getResourcesRequest);
 		self.expressApp.get('/resourceType', self.getResourceTypesRequest);
@@ -783,7 +777,7 @@ function AppManager(httpServer, expressApp) {
 	// GET CHART DATA REQUEST.
 	this.chartDataRequest = function(req, res) {
 
-		//self.debug('getChartData: req = ' + JSON.stringify(req.body));
+		self.debug('getChartData: req = ' + JSON.stringify(req.body));
 		res.send(200, self.chartData);
 	}
 
@@ -951,7 +945,7 @@ function AppManager(httpServer, expressApp) {
 	// THIS IS WHERE WE GET THE CALLBACKS WHEN DB RECORDS ARE SAVED.
 	
 	this.onSummaryDataChange = function(summaryData) {
-		//self.debug('onSummaryDataChange: summaryData = ' + JSON.stringify(summaryData));
+		self.debug('onSummaryDataChange: summaryData = ' + JSON.stringify(summaryData));
 		self.appManagerSocket.emit('summarydata.update',summaryData)
 	}
 	
@@ -1516,7 +1510,7 @@ function AppManager(httpServer, expressApp) {
 										{ name: 'Discovery', channelId: 10653, logo: 'discovery.png', abr: 'STB', storagePolicy: 'Local', playoutMpegTs: true, playoutABR: true, encryption: true, retentionDays: 30},
 										{ name: 'Fox', channelId: 10507, logo: 'fox.png', abr: 'STB', storagePolicy: 'Local', playoutMpegTs: true, playoutABR: true, encryption: true, retentionDays: 30},
 										{ name: 'ESPN', channelId: 10641, logo: 'espn.png', abr: 'STB', storagePolicy: 'Local', playoutMpegTs: true, playoutABR: true, encryption: true, retentionDays: 30},
-										{ name: 'FOX29', channelId: 16374, logo: 'fox.png', abr: 'STB', storagePolicy: 'Local', playoutMpegTs: true, playoutABR: true, encryption: true, retentionDays: 30}]
+										{ name: 'FOX29', channelId: 16374, logo: 'fox.png', abr: 'STB', storagePolicy: 'Local', playoutMpegTs: true, playoutABR: true, encryption: true, retentionDays: 30}];
 
 								for (i = 0; i < data.length; i++) {
 									new appDb.channelModel(data[i]).save();
@@ -1529,8 +1523,20 @@ function AppManager(httpServer, expressApp) {
 									for (i = 0; i < data.length; i++) {
 										new appDb.channelLineupModel(data[i]).save();
 									}
+									
+									self.removeExisting(appDb.encodingProfileModel, function(errors) {
+										
+										data = [{ name: "EncProf1", profile: "Profile 1", level: 1, bitRate: 5850, keyFrameInterval: 60, bufferSize: 2000, outputResolution: "1280x720", outputFrameRate: "1x"},
+												{ name: "EncProf2", profile: "Profile 1", level: 2, bitRate: 5850, keyFrameInterval: 60, bufferSize: 2000, outputResolution: "1280x720", outputFrameRate: "1x"},
+												{ name: "EncProf3", profile: "Profile 1", level: 3, bitRate: 5850, keyFrameInterval: 60, bufferSize: 2000, outputResolution: "1280x720", outputFrameRate: "1/3x"},
+												{ name: "EncProf4", profile: "Profile 1", level: 4, bitRate: 5850, keyFrameInterval: 60, bufferSize: 2000, outputResolution: "1280x720", outputFrameRate: "1/5x"}];
 
-									callback()
+										for (i = 0; i < data.length; i++) {
+											new appDb.encodingProfileModel(data[i]).save();
+										}
+							
+										callback();
+									});
 								});
 							});
 						});
@@ -1564,7 +1570,12 @@ function AppManager(httpServer, expressApp) {
 								
 								self.findAll(appDb.channelLineupModel, function(err, instances) {
 									results.channelLineup = instances;
-									res.send(200,results)
+									
+									self.findAll(appDb.encodingProfileModel, function(err, instances) {
+									
+										results.encodingProfile = instances;
+										res.send(200,results)
+									});
 								});
 							});
 						});
@@ -1583,7 +1594,8 @@ function AppManager(httpServer, expressApp) {
 			{ name: 'archivePolicy', description: 'Archive Policy', picture: 'policies.png' },
 			{ name: 'storagePolicy', description: 'Storage Policy', picture: 'policies.png' },
 			{ name: 'channel', description: 'Channel', picture: 'channels.png' },
-			{ name: 'channelLineup', description: 'Channel Lineup', picture: 'channels.png' }
+			{ name: 'channelLineup', description: 'Channel Lineup', picture: 'channels.png' },
+			{ name: 'encodingProfile', description: 'Encoding Profile', picture: 'resources.png' }
 		]);
 	}
 	
@@ -1796,6 +1808,36 @@ function AppManager(httpServer, expressApp) {
 
 		self.deleteRequest(req, res, appDb.channelLineupModel);
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// ENCODING PROFILE LINEUP
+	//
+	
+	this.findEncodingProfileByIdRequest = function(req, res) {
+
+		self.findByIdRequest(req, res, appDb.encodingProfileModel);
+	}
+
+	this.findEncodingProfilesRequest = function(req, res) {
+
+		self.findAllRequest(req, res, appDb.encodingProfileModel);
+	}
+	
+	this.insertEncodingProfileRequest = function(req, res) {
+
+		self.insertRequest(req, res, appDb.encodingProfileModel);
+	}
+
+	this.updateEncodingProfileRequest = function(req, res) {
+
+		self.updateRequest(req, res, appDb.encodingProfileModel);
+	}
+
+	this.deleteEncodingProfileRequest = function(req, res) {
+
+		self.deleteRequest(req, res, appDb.encodingProfileModel);
+	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -1825,7 +1867,7 @@ function AppManager(httpServer, expressApp) {
 			
 			instance.subType = 20;
 			instance.save();
-			res.send(200);
+			res.redirect('/#listInstances');
 		});
 	}
 }
