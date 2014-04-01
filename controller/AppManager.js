@@ -14,7 +14,20 @@ function AppManager(httpServer, expressApp) {
 	this.serviceManagerSocket = this.io.of('/serviceManager');
 	this.expressApp = expressApp;
 	this.httpServer = httpServer;
-	this.dbConn = mongoose.connect('mongodb://localhost/appdb');
+
+        var mongoUri = process.env.MONGOLAB_URI ||
+          process.env.MONGOHQ_URL ||
+          'mongodb://localhost/mydb';
+
+	this.dbConn = mongoose.connect(mongoUri, function(err, res){
+	  if (err) {
+	  console.log("ERROR connecting to: " + mongoUri + ". " + err );
+          process.exit();
+	  } else {
+	  console.log ('Succeeded connected to: ' + mongoUri);
+	  }
+	});
+
 	this.icons = {};
 	this.appModels = {};
 	this.serviceModels = {};
