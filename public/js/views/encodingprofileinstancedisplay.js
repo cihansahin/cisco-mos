@@ -1,19 +1,25 @@
-window.AppAddInstanceView = Backbone.View.extend({
+window.EncodingProfileInstanceDisplayView = Backbone.View.extend({
     initialize: function () {
         this.render();
     },
 
     render: function () {
 		
-		var encodingProfileInstanceList = this.options.encodingProfileInstanceList;
+		//CREATE MODEL PROPERTIES FOR RESOURCE LIST DATA
+		var resourceList = this.options.resourceList.models[0];
 		
-		var encodingProfileArray = [];
+		var abrTemplateArray = [];
+		var storagePolicyArray = [];
 		
-		for(var i = 0; i < encodingProfileInstanceList.models.length; i++) {
-			encodingProfileArray.push(encodingProfileInstanceList.models[i]);
+		for(var i = 0; i < resourceList.abrTemplate.length; i++) {
+			abrTemplateArray.push(resourceList.abrTemplate[i]);
+		}
+		for(var i = 0; i < resourceList.storagePolicy.length; i++) {
+			storagePolicyArray.push(resourceList.storagePolicy[i]);
 		}
 		
-		this.model.set("encodingProfileList", encodingProfileArray);
+		this.model.set("abrTemplateList", abrTemplateArray);
+		this.model.set("storagePolicyList", storagePolicyArray);
 		
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
@@ -21,26 +27,38 @@ window.AppAddInstanceView = Backbone.View.extend({
 
     events: {
         "change": "change",
-        "click .save": "beforeSave",
-        "click .delete": "deleteAppInstance",
+        "click .save": "beforeSave"
     },
     
     change: function (event) {
-        // Remove any existing alert message
-        utils.hideAlert();
-
-        // Apply the change to the model
+        
+		 utils.hideAlert();
+		
+		// Apply the change to the model
         var target = event.target;
         var change = {};
-        change[target.name] = target.value;
-        this.model.set(change);
+
+		
+		if(target.name == "playoutABR" || target.name == "encryption" || target.name == "playoutMpegTs"){
+			
+			if(target.checked){
+				change[target.name] = true;
+			}else{
+				change[target.name] = false;
+				}
+			
+		}else{
+        	change[target.name] = target.value;
+		}
+		
+		this.model.set(change);
 
         // Run validation rule (if any) on changed item
-        var check = this.model.validateItem(target.id);
+        var check = this.model.validateItem(target._id);
         if (check.isValid === false) {
-            utils.addValidationError(target.id, check.message);
+            utils.addValidationError(target._id, check.message);
         } else {
-            utils.removeValidationError(target.id);
+            utils.removeValidationError(target._id);
         }
     },
 
@@ -51,49 +69,35 @@ window.AppAddInstanceView = Backbone.View.extend({
             utils.displayValidationErrors(check.messages);
             return false;
         }
-        this.saveAppInstance();
+        this.saveChannelInstance();
         return false;
     },
 
-    saveAppInstance: function () {
+    saveChannelInstance: function () {
         var self = this;
         console.log('before save');
-		console.log(this.model);
         this.model.save(null, {
             success: function (model) {
                 self.render();
                 
-                utils.showAlert('Success!', 'App saved successfully', 'alert-success');
-                //app.navigate('/app', true);
-                
+                utils.showAlert('Success!', 'Channel saved successfully', 'alert-success');
+
                 console.log(self.options)
                 if ( self.options.vent ) {
                     console.log("Triggering ....onSaveComplete");
                     self.options.vent.trigger('onSaveComplete');
                 }
 
-                console.log("APP MODEL........" + JSON.stringify(model));
-                var url = '/listInstances';
+                console.log("CHANNEL MODEL........" + JSON.stringify(model));
+                var url = '/channel';
                 console.log("MOVING TO URL: " + url);
                 app.navigate( url, true );
-
-                //app.navigate('/app/' + model.type + "/listInstances" , true);
             },
             error: function (info, response) {
                 utils.showAlert('Error', 'Failed to add entry' + JSON.stringify(info) + 
                     "Response" + JSON.stringify(response), 'alert-error');
             }
         });
-    },
-
-    deleteAppInstance: function () {
-        this.model.destroy({
-            success: function () {
-                alert('App deleted successfully');
-                window.history.back();
-            }
-        });
-        return false;
     },
 
     dropHandler: function (event) {
@@ -112,6 +116,3 @@ window.AppAddInstanceView = Backbone.View.extend({
     }
 
 });
-
-
-

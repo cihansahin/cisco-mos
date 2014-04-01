@@ -1,25 +1,26 @@
 <div class ="addApplicationItemContainer">
 
-	<div class="addApplicationContentContainer">
+	<a class="noUnderlineAnchor" href="#services/<%= type %>/addInstance">
+		<div class="addApplicationContentContainer">
 		
-        <div class="addApplicationItemHeader">
-			<a href="#services/<%= type %>/addInstance"><span><%= name %></span></a>	
-		</div>
-
-
-		<div class="addApplicationItemIconSection">
-        	<span><%= name %></span>
-            <div class ="addApplicationIcon">
-				<img  src="<%= picture === null ? 'pics/TSTV.png' : 'pics/' + picture %>" alt="" width="69" height="42"/>
+        	<div class="addApplicationItemHeader">
+				<span><%= name %></span>
 			</div>
-        </div>
+
+
+			<div class="addApplicationItemIconSection">
+        		<span><%= name %></span>
+            	<div class ="addApplicationIcon">
+					<img  src="<%= picture === null ? 'pics/TSTV.png' : 'pics/' + picture %>" alt="" width="69" height="42"/>
+				</div>
+        	</div>
         
-        <div class="addApplicationDesctiptionSection">
-        	<p> <%= name %> service information. <%= name %> description will go here; </p>
-        </div>
+        	<div class="addApplicationDesctiptionSection">
+        		<p> <%= name %> service information. <%= name %> description will go here; </p>
+        	</div>
 		
 			
-	</div> 
-
+		</div> 
+	</a>	
 </div>
 

@@ -1,0 +1,224 @@
+<div class="container">
+            <div class="widget span8">
+            <div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-plus-circle-1"></i> ADD APPLICATION</span>
+        	</div>
+                <div id="instanceForm" class="row-fluid">
+                     <form class="form-horizontal span12">
+                        <fieldset>
+                            <div class="addApplicationItemHeader"><span><%= type.toUpperCase()  %></span></div>
+                            	<div class="addApplicationItemIconSection">
+        							<span><%= type.toUpperCase() %></span>
+            						<div class ="addApplicationIcon">
+										<img src='../img/playerIcon.png' alt=""/>
+									</div>
+        						</div>
+                                
+                          <div class="addApplicationFormSection">
+
+                            <div class="row">
+                               
+                                <div class="span8">
+                                
+                                
+                                <div class="addApplicationSectionHeader">
+                                		<span>Basic Settings</span>
+                               		</div>
+                                
+                                    <div class="control-group">
+                                        <label for="instanceName" class="addFormLabel">Name:</label>
+
+                                        <div class="controls">
+                                            <input id="instanceName" name="name" type="text" value="<%= name %>" />
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label for="minWorker" class="addFormLabel">Min Workers:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="minWorker" name="minWorkers"
+                                                   value="<%= minWorkers %>"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label for="maxWorker" class="addFormLabel">Max Workers:</label>
+
+                                        <div class="controls">
+                                            <input type="text" id="maxWorkers" name="maxWorkers"
+                                                   value="<%= maxWorkers %>"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="encoding" class="addFormLabel">Encoding Options:</label>
+
+                                        <div class="controls">
+                                            <select id="encoding" name="encoding">
+                                            	<option value="">-Select an Encoding Type-</option>
+                                            	<% _(encodingProfileList).each(function(epl) { %>
+      											<option value="<%= epl.name %>"><%= epl.name %></option>
+    												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label for="masterPlaylistName" class="addFormLabel">Master Playlist Name:</label>
+
+                                        <div class="controls">
+                                            <input id="masterPlaylistName" name="masterPlaylistName" type="text" value="index" />
+                                        </div>
+                                    </div>
+                                    
+                                   <div class="control-group">
+                                        <label for="streamName" class="addFormLabel">Stream Name:</label>
+
+                                        <div class="controls">
+                                            <input id="streamName" name="streamName" type="text" value="" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="addApplicationSectionHeader">
+                                		<span>Storage URL</span>
+                               		</div>
+                                    
+                                   <div class="control-group">
+                                        <label for="storageURL" class="addFormLabel">Address:</label>
+
+                                        <div class="controls">
+                                            <select id="storageURL" name="storageURL">
+                                            	<option value="ftp://">ftp://</option>
+                                                <option value="http://">http://</option>
+                                                <option value="https://">https://</option>
+                                                <option value="file://">file://</option>
+                                                <option selected="selected" value="webdav://">webdav://</option>
+                                                <option value="webdav-ssl://">webdav-ssl://</option>
+                                            </select>
+                                            <input id="urlText" name="urlText" type="text" value="192.168.0.1/live/NAB" />
+                                        </div>
+                                    </div>
+                                    
+                                   	<div id="ftp">
+                                    
+                                        <div class="control-group">
+                                        	<label for="authentication" class="addFormLabel">Authentication:</label>
+
+                                        	<div class="controls">
+                                            	<select id="authentication" name="authentication">
+                                            		<option value="None">None</option>
+                                                	<option value="Basic">Basic</option>
+                                            	</select>
+                                        	</div>
+                                    	</div>
+                                    
+                                    
+                                   		<div class="control-group">
+                                        	<label for="userName" class="addFormLabel">User Name:</label>
+
+                                        	<div class="controls">
+                                            	<input id="userName" name="userName" type="text" value="" />
+                                        	</div>
+                                    	</div>
+                                        <div class="control-group">
+                                        	<label for="password" class="addFormLabel">Password:</label>
+
+                                        	<div class="controls">
+                                            	<input id="password" name="password" type="text" value="" />
+                                        	</div>
+                                    	</div>
+                                    </div>
+                                    
+                                    
+                                   <div id="http">
+                                    
+                                         <div class="control-group">
+                                        	<label for="command" class="addFormLabel">Command:</label>
+
+                                        	<div class="controls">
+                                            	<select id="command" name="command">
+                                            		<option value="None">POST</option>
+                                                	<option value="Basic">PUT</option>
+                                            	</select>
+                                        	</div>
+                                    	</div>
+                                    
+                                    
+                                        <div class="control-group">
+                                        	<label for="authentication" class="addFormLabel">Authentication:</label>
+
+                                        	<div class="controls">
+                                            	<select id="authentication" name="authentication">
+                                            		<option value="None">None</option>
+                                                	<option value="Basic">Basic</option>
+                                            	</select>
+                                        	</div>
+                                    	</div>
+                                    
+                                    
+                                   		<div class="control-group">
+                                        	<label for="userName" class="addFormLabel">User Name:</label>
+
+                                        	<div class="controls">
+                                            	<input id="userName" name="userName" type="text" value="" />
+                                        	</div>
+                                    	</div>
+                                        <div class="control-group">
+                                        	<label for="password" class="addFormLabel">Password:</label>
+
+                                        	<div class="controls">
+                                            	<input id="password" name="password" type="text" value="" />
+                                        	</div>
+                                    	</div>
+                                    </div>
+                                  
+                                    <div class="addApplicationSectionHeader">
+                                		<span>Publishing URL</span>
+                               		</div>
+                                  
+                                  
+                                     <div class="control-group">
+                                        <label for="publishing" class="addFormLabel">Address:</label>
+
+                                        <div class="controls">
+                                            <input id="publishing" name="publishing" type="text" value="http://192.168.0.1/live" />
+                                        </div>
+                                    </div>  
+
+
+                                </div>
+                                
+                                </div>
+
+                           
+                            </div>
+
+                            </div>
+
+                        </fieldset>
+
+                        <div class="addFormButtons">
+                            <a href="#listInstances" class="btn btn-turqoise">Cancel</a>
+                            <a href="#apps" class="btn btn-turqoise">Back</a>
+                            <a href="#" class="btn btn-turqoise save">DEPLOY</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row-fluid status-bar">
+                <div class="span12">
+                    <div class="alert alert-success" style="display: none">
+                        <b>Success!</b> App saved successfully
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+<script src="js/util/addTranscodeView.js"></script>
+

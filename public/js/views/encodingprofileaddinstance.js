@@ -1,19 +1,13 @@
-window.AppAddInstanceView = Backbone.View.extend({
+window.EncodingProfileAddInstanceView = Backbone.View.extend({
     initialize: function () {
         this.render();
     },
 
     render: function () {
 		
-		var encodingProfileInstanceList = this.options.encodingProfileInstanceList;
+		//CREATE MODEL PROPERTIES FOR RESOURCE LIST DATA
+		var resourceList = this.options.resourceList.models[0];
 		
-		var encodingProfileArray = [];
-		
-		for(var i = 0; i < encodingProfileInstanceList.models.length; i++) {
-			encodingProfileArray.push(encodingProfileInstanceList.models[i]);
-		}
-		
-		this.model.set("encodingProfileList", encodingProfileArray);
 		
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
@@ -28,19 +22,22 @@ window.AppAddInstanceView = Backbone.View.extend({
     change: function (event) {
         // Remove any existing alert message
         utils.hideAlert();
-
-        // Apply the change to the model
+		
+		// Apply the change to the model
         var target = event.target;
         var change = {};
-        change[target.name] = target.value;
-        this.model.set(change);
+
+		
+		change[target.name] = target.value;
+		
+		this.model.set(change);
 
         // Run validation rule (if any) on changed item
-        var check = this.model.validateItem(target.id);
+        var check = this.model.validateItem(target._id);
         if (check.isValid === false) {
-            utils.addValidationError(target.id, check.message);
+            utils.addValidationError(target._id, check.message);
         } else {
-            utils.removeValidationError(target.id);
+            utils.removeValidationError(target._id);
         }
     },
 
@@ -51,11 +48,11 @@ window.AppAddInstanceView = Backbone.View.extend({
             utils.displayValidationErrors(check.messages);
             return false;
         }
-        this.saveAppInstance();
+        this.saveEncodingProfileInstance();
         return false;
     },
 
-    saveAppInstance: function () {
+    saveEncodingProfileInstance: function () {
         var self = this;
         console.log('before save');
 		console.log(this.model);
@@ -63,7 +60,7 @@ window.AppAddInstanceView = Backbone.View.extend({
             success: function (model) {
                 self.render();
                 
-                utils.showAlert('Success!', 'App saved successfully', 'alert-success');
+                utils.showAlert('Success!', 'Encoding Profile saved successfully', 'alert-success');
                 //app.navigate('/app', true);
                 
                 console.log(self.options)
@@ -72,8 +69,8 @@ window.AppAddInstanceView = Backbone.View.extend({
                     self.options.vent.trigger('onSaveComplete');
                 }
 
-                console.log("APP MODEL........" + JSON.stringify(model));
-                var url = '/listInstances';
+                console.log("Encoding Profile MODEL........" + JSON.stringify(model));
+                var url = '/encodingProfile';
                 console.log("MOVING TO URL: " + url);
                 app.navigate( url, true );
 

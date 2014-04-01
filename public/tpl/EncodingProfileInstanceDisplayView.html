@@ -1,25 +1,29 @@
 <div class="container">
             <div class="widget span8">
             <div class="widget-header clearfix">
-				<span class="pull-left"><i class="icon-plus-circle-1"></i> ADD CHANNEL</span>
+				<span class="pull-left"><i class="icon-plus-circle-1"></i> EDIT ENCODING PROFILE</span>
         	</div>
                 <div id="instanceForm" class="row-fluid">
                      <form class="form-horizontal span12">
                         <fieldset>
                             <div class="addApplicationItemHeader"><span><%= name.toUpperCase()  %></span></div>
-                            	<div class="addApplicationItemIconSection">
-        							<span><%= name.toUpperCase() %></span>
-            						<div class ="addApplicationIcon">
-										<img src='../pics/channels.png' alt=""/>
-									</div>
-        						</div>
+                            <div class="addApplicationItemIconSection">
+        						<span><%= name.toUpperCase() %></span>
+            					<div class ="addApplicationIcon">
+									<img src='../pics/resources.png' alt=""/>
+								</div>
+        					</div>
                                 
                           <div class="addApplicationFormSection">
 
                             <div class="row">
+
                                
                                 <div class="span8">
-                                    <div class="control-group">
+                                
+                                
+                                
+                                <div class="control-group">
                                         <label for="instanceName" class="addFormLabel">Name:</label>
 
                                         <div class="controls">
@@ -84,7 +88,7 @@
                                         <label for="playoutMpegTs" class="addFormLabel">Playout MPEG-TS:</label>
 
                                         <div class="controls addApplicationCheckbox">
-                                            <input type="checkbox" name="playoutMpegTs" value="mpeg"/>
+                                            <input type="checkbox" id="playoutMpegTs" name="playoutMpegTs" value="mpeg"/>
                                         </div>
                                     </div>
                                     
@@ -92,7 +96,7 @@
                                         <label for="playoutABR" class="addFormLabel">Playout ABR:</label>
 
                                         <div class="controls addApplicationCheckbox">
-                                            <input type="checkbox" name="playoutABR" value="playoutABR"/>
+                                            <input type="checkbox" id="playoutABR" name="playoutABR" value="playoutABR"/>
                                         </div>
                                     </div>
                                     
@@ -100,30 +104,32 @@
                                         <label for="encryption" class="addFormLabel">Encryption:</label>
 
                                         <div class="controls addApplicationCheckbox">
-                                            <input type="checkbox" name="encryption" value="encryption"/>
+                                            <input type="checkbox" id="encryption" name="encryption" value="encryption"/>
                                         </div>
                                     </div>
-
-                                </div>
+                                
+                                
+                                 
                                 
                                 </div>
-
+                                
+                            
                            
                             </div>
 
-                            </div>
+                         </div>
 
                         </fieldset>
 
                         <div class="addFormButtons">
-                            <a href="#channel" class="btn btn-turqoise">Cancel</a>
-                            <a href="#channel" class="btn btn-turqoise">Back</a>
-                            <a href="#" class="btn btn-turqoise save">DEPLOY</a>
+                            <a href="#" class="btn btn-turqoise save">OK</a>
                         </div>
 
                     </form>
+	
 
                 </div>
+                
             </div>
 
             <div class="row-fluid status-bar">
@@ -135,6 +141,39 @@
             </div>
 
 
-        </div>
+</div>
 
+<script>
 
+$(document).ready(function () {
+	
+	var sp = document.getElementById('storagePolicy');
+	for (var i = 0; i < sp.options.length; i++) {
+    	if (sp.options[i].text === "<%= storagePolicy %>") {
+        	sp.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var abr = document.getElementById('abr');
+	for (var i = 0; i < abr.options.length; i++) {
+    	if (abr.options[i].text === "<%= abr %>") {
+        	abr.selectedIndex = i;
+        	break;
+    	}
+	}
+	
+	var playoutMpegTs = document.getElementById('playoutMpegTs');
+	var playoutABR = document.getElementById('playoutABR');
+	var encryption = document.getElementById('encryption');
+	playoutMpegTs.checked= ("<%= playoutMpegTs %>" === "true");
+	playoutABR.checked= ("<%= playoutABR %>" === "true");
+	encryption.checked= ("<%= encryption %>" === "true");
+	
+	
+	
+ });
+ 
+ 
+
+</script>

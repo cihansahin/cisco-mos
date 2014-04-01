@@ -171,3 +171,19 @@ var channelLineupSchema = new Schema( {
 });
 
 module.exports.channelLineupModel = mongoose.model('channelLineup', channelLineupSchema);
+
+// ENCODING PROFILE
+
+var encodingProfileSchema = new Schema( {
+    name:  { type: String, unique: true},
+	profile: String,
+	level: Number,
+	bitRate: Number,
+	keyFrameInterval: Number,
+	bufferSize: Number,
+	outputResolution: String,
+	outputFrameRate: String
+});
+
+module.exports.encodingProfileModel = mongoose.model('encodingProfile', encodingProfileSchema);
+

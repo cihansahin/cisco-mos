@@ -1,0 +1,32 @@
+<div class="container span12"  >
+
+		<div  class="widget span12" >
+        
+			<div class="widget-header clearfix">
+				<span class="pull-left"><i class="icon-right-circled"></i> DEPLOYED</span>
+                <div class="dropdown pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog-2"></i> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+				       <li><a id="sort1">Sort by Type</a></li>
+                       <li><a id="sort2">Sort by Name</a></li>
+					</ul>
+				</div>
+        	</div>
+
+
+			<div>
+				<table class="instanceTable">
+					<thead><th>Name</th><th>Level</th><th>Profile</th><th>Bit Rate</th><th>Keyframe Interval</th><th>Buffer Size</th><th>Output Resolution</th><th>Output Frame Rrate</th></thead>
+					<tbody>
+						<% for(var i=0; i<items.length; i++) { %>
+							<%= itemTemplate(items[i]) %>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+
+	</div>
+        
+</div>
+
+<script src="js/util/encodingProfileListView.js"></script>

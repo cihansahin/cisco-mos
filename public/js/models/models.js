@@ -348,7 +348,62 @@ window.ChannelInstanceCollection = Backbone.Collection.extend({
     url: "/channel"
 });
 
+window.EncodingProfileInstance = Backbone.Model.extend({
 
+    urlRoot: "/encodingProfile/", 
+    idAttribute : "_id",
+
+	_id: null,							// READ ONLY
+    name: null,							// READ ONLY 
+    profile: null,						// READ ONLY 
+    level: "",
+	bitRate: null,						// READ ONLY 
+	keyFrameInterval: null,				// READ ONLY
+	bufferSize: null,					// READ ONLY 
+	outputResolution: null,				// READ ONLY
+	outputFrameRate: null,				// READ ONLY
+
+    methodToURL: {},
+
+    initialize: function(data) {
+    	this._id  =  data._id; 
+        this.name  =  data.name;
+        this.profile  =  data.profile; 
+        this.level  = data.level;
+		this.bitRate = data.bitRate;
+		this.keyFrameInterval = data.keyFrameInterval;
+		this.bufferSize = data.bufferSize;
+		this.outputResolution = data.outputResolution;
+		this.outputFrameRate = data.outputFrameRate;
+   },
+    
+    validateItem: function(key) {
+        return {isValid: true};
+    }, 
+
+    validateAll: function() {
+        return {isValid: true};
+    }, 
+
+    url: function() {
+	
+        if (this._id == null) {
+            return this.urlRoot;
+        }
+
+        return this.urlRoot + this._id;
+    }, 
+
+    defaults: {
+    	_id: null,
+        name: "Encoding Profile",
+  }
+});
+
+window.EncodingProfileInstanceCollection = Backbone.Collection.extend({
+    model: EncodingProfileInstance,
+    url: "/encodingProfile"
+});
 
 
 

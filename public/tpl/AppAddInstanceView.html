@@ -51,8 +51,9 @@
                                         <div class="controls">
                                             <select id="encoding" name="encoding">
                                             	<option value="">-Select an Encoding Type-</option>
-                                            	<option value="H.265">HEVC (H.265)</option>
-                                                <option value="H.264">AVC (H.264)</option>
+                                            	<% _(encodingProfileList).each(function(epl) { %>
+      											<option value="<%= epl.name %>"><%= epl.name %></option>
+    												<% }); %>
                                             </select>
                                         </div>
                                     </div>

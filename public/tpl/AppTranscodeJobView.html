@@ -1,7 +1,7 @@
 <div class="container">
             <div class="widget span8">
             <div class="widget-header clearfix">
-				<span class="pull-left"><i class="icon-plus-circle-1"></i>Trasncode Job</span>
+				<span class="pull-left"><i class="icon-plus-circle-1"></i>Transcode Job</span>
         	</div>
                 <div id="instanceForm" class="row-fluid">
                      <form class="form-horizontal span12">
@@ -21,7 +21,7 @@
                                    
                                     
                                     <div class="control-group">
-                                        <label for="storagePolicy" class="addFormLabel">Transcode Instances:</label>
+                                        <label for="transcodeJob" class="addFormLabel">Transcode Instances:</label>
 
                                         <div class="controls">
                                             <select id="transcodeJob" name="transcodeJob" >
@@ -29,6 +29,20 @@
     											<% _(transcodeList).each(function(tr) { %>
       											<option value="<%= tr %>"><%= tr %></option>
     												<% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                     <div class="control-group">
+                                        <label for="transcodeurl" class="addFormLabel">File:</label>
+
+                                        <div class="controls">
+                                            <select id="transcodeurl" name="transcodeurl" >
+                                            	<option value="">nab-demo1.mpg</option>
+                                                <option value="">test1.mp4</option>
+                                                <option value="">test2.mpg</option>
+                                                <option value="">demo.mpg</option>
                                             </select>
                                         </div>
                                     </div>
@@ -44,7 +58,7 @@
 
                         <div class="addFormButtons">
                             <a href="#listInstances" class="btn btn-turqoise">Cancel</a>
-                            <a href="#" class="btn btn-turqoise save">DEPLOY</a>
+                            <a href="#" class="btn btn-turqoise save">TRANSCODE</a>
                         </div>
 
                     </form>

@@ -1,4 +1,4 @@
-window.AppAddInstanceView = Backbone.View.extend({
+window.AppAddTranscodeInstanceView = Backbone.View.extend({
     initialize: function () {
         this.render();
     },

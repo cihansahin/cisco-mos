@@ -29,6 +29,10 @@ var AppRouter = Backbone.Router.extend({
 		'channel/instance/:instanceId': 'showChannelInstance',
 		'channel/instance/delete/:instanceId': 'deleteChannelInstance',
 		'channelLineup': 'listChannelLineups',
+		'encodingProfile': 'listEncodingProfiles',
+		'encodingProfile/addInstance': 'addEncodingProfileInstance',
+		'encodingProfile/instance/:instanceId': 'showEncodingProfileInstance',
+		'encodingProfile/instance/delete/:instanceId': 'deleteEncodingProfileInstance',
 		'abrTemplate': 'listResources',
 		'drmTemplate': 'listResources',
 		'contentVolume': 'listResources',
@@ -72,8 +76,23 @@ var AppRouter = Backbone.Router.extend({
 
     addInstance: function(typeId) {
 		currentContent = 'addInstance';
-        var app = new AppInstance({type: typeId});
-        $('#contentMain').html(new AppAddInstanceView({model: app}).el);
+		
+		var app = new AppInstance({type: typeId});
+		
+		
+		encodingProfileInstanceList = new EncodingProfileInstanceCollection();
+		encodingProfileInstanceList.fetch({success: function() {
+			 if(typeId == "transcode")
+			{
+        		$('#contentMain').html(new AppAddTranscodeInstanceView({model: app, encodingProfileInstanceList : encodingProfileInstanceList}).el);
+			}else{
+				$('#contentMain').html(new AppAddInstanceView({model: app, encodingProfileInstanceList : encodingProfileInstanceList}).el);
+			}
+        }});
+		
+	
+		
+
         this.setHeaderWithoutOptions("Applications");
 		this.hideSummaryView();
     }, 
@@ -310,7 +329,7 @@ var AppRouter = Backbone.Router.extend({
 				$('#contentMain').html(new ChannelInstanceDisplayView({model: instance, resourceList : resourceList}).el);
 			}});
         }});
-        this.setHeaderWithoutOptions("Applications");
+        this.setHeaderWithoutOptions("Channel");
 		this.hideSummaryView();
     },
 	
@@ -327,6 +346,56 @@ var AppRouter = Backbone.Router.extend({
         this.headerView.selectMenuItem();
 		this.hideSummaryView();
     },
+	
+	listEncodingProfiles: function(typeId) {
+		currentContent = 'listEncodingProfiles';
+		instanceList = new EncodingProfileInstanceCollection();
+		instanceList.fetch({success: function() {
+             $('#contentMain').html(new EncodingProfileInstanceListView({model: instanceList}).el);
+        }});
+		
+		this.setHeaderWithOptions("Encoding Profile");
+		this.hideSummaryView();
+    },
+	
+	addEncodingProfileInstance: function() {
+		currentContent = 'addEncodingProfileInstance';
+        var encodingProfile = new EncodingProfileInstance(null);
+		var resourceList = new ResourceDataCollection();
+		resourceList.fetch({success: function() {
+			$('#contentMain').html(new EncodingProfileAddInstanceView({model: encodingProfile, resourceList : resourceList}).el);
+		}});
+        this.setHeaderWithoutOptions("Encoding Profile");
+		this.hideSummaryView();
+    },
+	
+	showEncodingProfileInstance: function(instanceId) {
+		currentContent = 'showEncodingProfile';
+        var instance = new EncodingProfileInstance({_id: instanceId});
+        instance.fetch({success: function() {
+			var resourceList = new ResourceDataCollection();
+			resourceList.fetch({success: function() {
+				$('#contentMain').html(new EncodingProfileInstanceDisplayView({model: instance, resourceList : resourceList}).el);
+			}});
+        }});
+        this.setHeaderWithoutOptions("Encoding Profile");
+		this.hideSummaryView();
+    },
+	
+	deleteEncodingProfileInstance: function(instanceId) {
+		console.log("delete encoding profile");
+		currentContent = 'delete';
+        var instance = new EncodingProfileInstance({_id: instanceId});
+        instance.fetch({success: function() {
+            instance.destroy( {success: function () {
+                console.log('DESTROYED');
+            }});
+        }});
+        window.history.back();
+        this.headerView.selectMenuItem();
+		this.hideSummaryView();
+    },
+	
 
     about: function () {
 		currentContent = 'about';
@@ -420,6 +489,11 @@ var AppRouter = Backbone.Router.extend({
 		}else if(subTitle == "Channel Lineup"){
 			headerAddButton.innerHTML = "ADD CHANNEL LINEUP";
 			headerAddButton.href = "/#apps";
+		}else if(subTitle == "Encoding Profile"){
+			headerAddButton.innerHTML = "ADD ENCODING PROFILE";
+			headerAddButton.href = "/#encodingProfile/addInstance";
+			listButton.href = "/#encodingProfile";
+			gridButton.href = "/#encodingProfile";
 		}else{
 			headerAddButton.innerHTML = "ADD APP";
 			headerAddButton.href = "/#apps";
@@ -448,8 +522,7 @@ var AppRouter = Backbone.Router.extend({
 	
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'HeaderBasicView', 'SummaryDataView', 'AppAddInstanceView', 'AppInstanceDisplayView',
-    'AppView', 'AppListItemView', 'AppGridItemView', 'AppInstanceListView', 'AppInstanceGridView', 'AppChartView', 'AppListView', 'AppLauncherView', 'AppTranscodeJobView', 'ServiceListView', 'ServiceListItemView', 'ServiceAddInstanceView', 'ServiceInstanceListView', 'ServiceInstanceGridView', 'ServiceGridItemView', 'ServiceInstanceDisplayView', 'ResourceListView', 'ResourceListItemView', 'ChannelLineupListView', 'ChannelInstanceListView', 'ChannelAddInstanceView', 'ChannelInstanceDisplayView', 'AboutView', 'AppVideoPlayerView'],
+utils.loadTemplate(['HomeView', 'HeaderView', 'HeaderBasicView', 'SummaryDataView', 'AppAddInstanceView', 'AppAddTranscodeInstanceView','AppInstanceDisplayView', 'AppView', 'AppListItemView', 'AppGridItemView', 'AppInstanceListView', 'AppInstanceGridView', 'AppChartView', 'AppListView', 'AppLauncherView', 'AppTranscodeJobView', 'ServiceListView', 'ServiceListItemView', 'ServiceAddInstanceView', 'ServiceInstanceListView', 'ServiceInstanceGridView', 'ServiceGridItemView', 'ServiceInstanceDisplayView', 'ResourceListView', 'ResourceListItemView', 'ChannelLineupListView', 'ChannelInstanceListView', 'ChannelAddInstanceView', 'ChannelInstanceDisplayView', 'EncodingProfileInstanceListView', 'EncodingProfileAddInstanceView', 'EncodingProfileInstanceDisplayView', 'AboutView', 'AppVideoPlayerView'],
      function() {
     app = new AppRouter();
     Backbone.history.start();

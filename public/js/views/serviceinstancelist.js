@@ -82,6 +82,8 @@ window.ServiceInstanceListView = Backbone.View.extend({
 			}
 		}
 		
+		
+		
         $(this.el).html( this.template({type: this.options.type, items: instances, itemTemplate: this.itemTemplate }));
 
         return this;
